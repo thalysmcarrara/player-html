@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack@^1.9.7/player/styles/default/theme.min.css" />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/vidstack@^1.9.7/player/styles/default/layouts/video.min.css" />
+  <script>
+    function getParams() {
+      const params = new URLSearchParams(window.location.search);
+      return Object.fromEntries(params.entries());
+    }
+
+    const defaultSRC = 'https://www.youtube.com/watch?v=yLI5BMaTlKs&ab_channel=TheBard'
+    window.onload = function () {
+      const params = getParams()
+      var player = document.querySelector('media-player');
+
+      for (let param in params) {
+        player.setAttribute(param, params[param])
+      }
+
+      if (params['src'] === undefined) {
+        player.setAttribute('src', defaultSRC)
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/vidstack@^1.9.7/cdn/with-layouts/vidstack.js" type="module"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <media-player playsinline crossorigin="anonymous">
+    <media-provider>
+      <media-poster class="vds-poster" alt="poster"></media-poster>
+    </media-provider>
+    <media-video-layout></media-video-layout>
+  </media-player>
+</body>
+
+</html>
